@@ -1,11 +1,12 @@
 import React from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
-const ListItemComponent = ({ data }) => (
+const ListItemComponent = ({ data, onPress }) => (
   <View style={styles.container}>
+    <Text style={styles.brands}>{data.brands.map(brand => brand.toUpperCase()).join(' ')}</Text>
     <Text style={styles.title}>{data.product}</Text>
-    <Text style={styles.brands}>{data.brands.join(' ')}</Text>
     <Text style={styles.description}>{data.description}</Text>
+    <Button color="#003c80" title="Ver más" onPress={onPress} />
   </View>
 );
 
@@ -21,13 +22,15 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 17,
     fontWeight: 'bold',
-    color: '#003c80'
-  },
-  brands: {
+    color: '#003c80',
     paddingTop: 10,
     paddingBottom: 10
   },
+  brands: {
+    fontSize: 12
+  },
   description: {
+    marginBottom: 20
   }
 });
 
