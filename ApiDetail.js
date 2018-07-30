@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
 export default class ApiDetailPage extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -16,6 +15,7 @@ export default class ApiDetailPage extends React.Component {
       `http://13.59.225.126:8081/apiproducts?name=${name}`
     );
     const { apiProduct } = await fetchProduct.json();
+
     this.setState({
       data: apiProduct[0]
     });
@@ -25,9 +25,14 @@ export default class ApiDetailPage extends React.Component {
     return (
       <ScrollView style={styles.container}>
         {this.state.data !== null && (
-          <View>
+          <View style={styles.content}>
             <Text style={styles.title}>{this.state.data.product}</Text>
-            <Text>{this.state.data.description}</Text>
+            <Text style={styles.version}>
+              Versión: {this.state.data.versionNumber}
+            </Text>
+            <Text style={styles.description}>
+              {this.state.data.description}
+            </Text>
           </View>
         )}
       </ScrollView>
@@ -37,14 +42,17 @@ export default class ApiDetailPage extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#f3f3f3'
+    backgroundColor: '#ffffff'
   },
+  content: { padding: 20 },
   title: {
-    backgroundColor: '#1f3752',
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#ffffff',
-    paddingTop: 15,
-    paddingBottom: 15
-  }
+    color: '#003c80'
+  },
+  version: {
+    color: '#46b4b8',
+    fontSize: 16
+  },
+  description: { fontSize: 16, marginTop: 20 }
 });

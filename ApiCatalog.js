@@ -2,7 +2,6 @@ import React from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import ListItem from './ListItem';
 
-
 export default class ApiCatalogPage extends React.Component {
   static navigationOptions = {
     title: 'Catálogo'
@@ -17,9 +16,12 @@ export default class ApiCatalogPage extends React.Component {
   async componentDidMount() {
     const fetchProducts = await fetch('http://13.59.225.126:8081/apiproducts');
     const { apiProduct } = await fetchProducts.json();
-    this.setState({
-      data: apiProduct.map((api, index) => ({ ...api, key: index.toString() }))
-    });
+    const data = apiProduct.map((api, index) => ({
+      ...api,
+      key: index.toString()
+    }));
+
+    this.setState({ data });
   }
 
   handleClick(item) {
@@ -43,12 +45,5 @@ export default class ApiCatalogPage extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#f3f3f3'
-  },
-  title: {
-    backgroundColor: '#1f3752',
-    fontSize: 18,
-    color: '#ffffff',
-    height: 50
   }
 });
