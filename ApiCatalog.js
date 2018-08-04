@@ -24,9 +24,13 @@ export default class ApiCatalogPage extends React.Component {
     this.setState({ data });
   }
 
-  handleClick(item) {
+  handleClick = item => {
     this.props.navigation.navigate('ApiDetail', { name: item.product });
-  }
+  };
+
+  renderItem = ({ item }) => (
+    <ListItem data={item} onPress={() => this.handleClick(item)} />
+  );
 
   render() {
     return (
@@ -34,9 +38,7 @@ export default class ApiCatalogPage extends React.Component {
         <FlatList
           style={styles.list}
           data={this.state.data}
-          renderItem={({ item }) => (
-            <ListItem data={item} onPress={() => this.handleClick(item)} />
-          )}
+          renderItem={this.renderItem}
         />
       </View>
     );
@@ -45,5 +47,6 @@ export default class ApiCatalogPage extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1
   }
 });

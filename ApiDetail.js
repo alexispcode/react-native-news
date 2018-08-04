@@ -22,17 +22,15 @@ export default class ApiDetailPage extends React.Component {
   }
 
   render() {
+    const { data } = this.state;
+
     return (
       <ScrollView style={styles.container}>
-        {this.state.data !== null && (
+        {data !== null && (
           <View style={styles.content}>
-            <Text style={styles.title}>{this.state.data.product}</Text>
-            <Text style={styles.version}>
-              Versión: {this.state.data.versionNumber}
-            </Text>
-            <Text style={styles.description}>
-              {this.state.data.description}
-            </Text>
+            <Text style={styles.title}>{data.product}</Text>
+            <Text style={styles.version}>Versión: {data.versionNumber}</Text>
+            <Text style={styles.description}>{data.description}</Text>
           </View>
         )}
       </ScrollView>
