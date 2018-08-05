@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
-export default class ApiDetailPage extends React.Component {
+export default class ApiDetailScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,15 +22,18 @@ export default class ApiDetailPage extends React.Component {
   }
 
   render() {
-    const { data } = this.state;
-
+    
     return (
       <ScrollView style={styles.container}>
-        {data !== null && (
+        {this.state.data !== null && (
           <View style={styles.content}>
-            <Text style={styles.title}>{data.product}</Text>
-            <Text style={styles.version}>Versión: {data.versionNumber}</Text>
-            <Text style={styles.description}>{data.description}</Text>
+            <Text style={styles.title}>{this.state.data.product}</Text>
+            <Text style={styles.version}>
+              Versión: {this.state.data.versionNumber}
+            </Text>
+            <Text style={styles.description}>
+              {this.state.data.description}
+            </Text>
           </View>
         )}
       </ScrollView>
